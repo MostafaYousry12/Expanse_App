@@ -6,6 +6,7 @@ class AppBarWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: Colors.white,
       actions: [
         IconButton(
           icon: const Icon(
