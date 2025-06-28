@@ -1,3 +1,6 @@
+import 'package:expanse_app/widgets/appbar_widget.dart';
+import 'package:expanse_app/widgets/dashboardview_body.dart';
+import 'package:expanse_app/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 
 class DashboardView extends StatelessWidget {
@@ -6,7 +9,7 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(),
+      body: DashboardviewBody(),
     );
   }
 }
