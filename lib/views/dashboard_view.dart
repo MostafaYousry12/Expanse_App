@@ -1,4 +1,5 @@
 import 'package:expanse_app/constants.dart';
+import 'package:expanse_app/views/addTransaction_view.dart';
 import 'package:expanse_app/widgets/appbar_widget.dart';
 import 'package:expanse_app/widgets/dashboardview_body.dart';
 import 'package:expanse_app/widgets/card_widget.dart';
@@ -13,13 +14,19 @@ class DashboardView extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         shape: const CircleBorder(),
         backgroundColor: Colors.blue,
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const AddtransactionView(),
+            ),
+          );
+        },
         child: const Icon(
           Icons.add,
           color: Colors.white,
         ),
       ),
-      backgroundColor: kBackgroundColor,
       body: DashboardviewBody(),
     );
   }
