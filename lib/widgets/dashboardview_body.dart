@@ -90,7 +90,7 @@ class DashboardviewBody extends StatelessWidget {
               child: SizedBox(
                   height: 300,
                   child: ListViewWidget(expanses: dummyData, aspectRatio: 3)),
-            )
+            ),
           ],
         ),
       ),

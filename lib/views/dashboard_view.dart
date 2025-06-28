@@ -10,6 +10,15 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        shape: const CircleBorder(),
+        backgroundColor: Colors.blue,
+        onPressed: () {},
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+        ),
+      ),
       backgroundColor: kBackgroundColor,
       body: DashboardviewBody(),
     );
