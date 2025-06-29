@@ -1,5 +1,6 @@
 import "package:bloc/bloc.dart";
 import "package:expanse_app/constants.dart";
+import "package:expanse_app/cubits/cubit/add_transaction_cubit.dart";
 import "package:expanse_app/cubits/cubit/transaction_cubits/transaction_cubit.dart";
 import "package:expanse_app/models/expanse_model.dart";
 import "package:expanse_app/simple_bloc_observer.dart";
@@ -23,8 +24,11 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => TransactionCubit(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (context) => AddTransactionCubit()),
+        BlocProvider(create: (context) => TransactionCubit()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: ThemeData(

@@ -27,7 +27,9 @@ class _DashboardViewState extends State<DashboardView> {
                 child: const AddtransactionView(),
               ),
             ),
-          );
+          ).then((value) {
+            context.read<AddTransactionCubit>().fetchTransaction();
+          });
         },
         child: const Icon(
           Icons.add,

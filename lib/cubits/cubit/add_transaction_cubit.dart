@@ -12,12 +12,23 @@ class AddTransactionCubit extends Cubit<AddTransactionState> {
 
   final List<ExpanseModel> transactions = [];
 
+  int get totalIncomeAmount => transactions
+      .where((tx) => tx.transactionType == "Income")
+      .fold(0, (sum, tx) => sum + tx.amount);
+
+  int get totalExpenseAmount => transactions
+      .where((tx) => tx.transactionType == "Expanse")
+      .fold(0, (sum, tx) => sum + tx.amount);
+
+  int get totalBalance => totalIncomeAmount - totalExpenseAmount;
+
   Future<void> addTransaction(ExpanseModel expanse) async {
     emit(AddTransactionLoading());
     try {
       var expansebox = Hive.box<ExpanseModel>(kExpanseBox);
       await expansebox.add(expanse);
       transactions.add(expanse);
+
       emit(AddTransactionSuccess());
     } catch (e) {
       emit(AddTransactionFailure(e.toString()));
@@ -28,5 +39,6 @@ class AddTransactionCubit extends Cubit<AddTransactionState> {
     final box = Hive.box<ExpanseModel>(kExpanseBox);
     transactions.clear();
     transactions.addAll(box.values.toList());
+    emit(AddTransactionSuccess());
   }
 }

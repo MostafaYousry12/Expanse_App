@@ -1,15 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class ListViewCard extends StatelessWidget {
   const ListViewCard({
     super.key,
     required this.amountType,
     required this.amount,
-    this.aspectRatio, // ✅ optional
+    this.aspectRatio,
+    required this.date,
+    required this.transactionType, // ✅ optional
   });
 
   final String amountType;
+  final String transactionType;
   final int amount;
+  final DateTime date;
   final double? aspectRatio;
 
   @override
@@ -27,10 +32,10 @@ class ListViewCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  "Total $amountType",
+                  "$amountType",
                   style: TextStyle(
-                    fontSize: 12,
-                    color: Colors.grey.withOpacity(.8),
+                    fontSize: 16,
+                    color: Colors.grey,
                   ),
                 ),
                 Text(
@@ -43,13 +48,14 @@ class ListViewCard extends StatelessWidget {
                 ),
               ],
             ),
-            const Column(
+            Column(
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
                 Text(
-                  "+\$2000",
+                  transactionType == "Income" ? "+\$$amount" : "-\$$amount",
                   style: TextStyle(
-                    color: Colors.green,
+                    color:
+                        transactionType == "Income" ? Colors.green : Colors.red,
                     fontSize: 12,
                   ),
                 ),
@@ -57,7 +63,7 @@ class ListViewCard extends StatelessWidget {
                   height: 5,
                 ),
                 Text(
-                  "30 Oct 2002",
+                  DateFormat.yMMMd().format(DateTime.parse(date.toString())),
                   style: TextStyle(
                     color: Colors.black,
                     fontSize: 12,

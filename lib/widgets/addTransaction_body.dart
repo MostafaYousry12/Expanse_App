@@ -38,6 +38,7 @@ class _AddtransactionBodyState extends State<AddtransactionBody> {
                 height: 100,
               ),
               CustomTextFormField(
+                keyboardType: TextInputType.text,
                 labelText: "Title",
                 onSaved: (value) {
                   title = value;

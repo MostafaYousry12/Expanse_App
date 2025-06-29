@@ -1,12 +1,9 @@
-import 'package:expanse_app/constants.dart';
-import 'package:expanse_app/cubits/cubit/add_transaction_cubit.dart';
 import 'package:expanse_app/cubits/cubit/transaction_cubits/transaction_cubit.dart';
 import 'package:expanse_app/models/expanse_model.dart';
 import 'package:expanse_app/widgets/List_view_card.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:hive/hive.dart';
 
 class ListViewWidget extends StatelessWidget {
   const ListViewWidget({super.key, required this.aspectRatio});
@@ -39,6 +36,8 @@ class ListViewWidget extends StatelessWidget {
               return ListViewCard(
                 amountType: item.type,
                 amount: item.amount,
+                date: item.doneTime,
+                transactionType: item.transactionType,
               );
             },
           );

@@ -1,6 +1,8 @@
+import 'package:expanse_app/cubits/cubit/add_transaction_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CardWidgetIncomeorexpanse extends StatelessWidget {
+class CardWidgetIncomeorexpanse extends StatefulWidget {
   const CardWidgetIncomeorexpanse({
     super.key,
     required this.amountType,
@@ -13,7 +15,18 @@ class CardWidgetIncomeorexpanse extends StatelessWidget {
   final double? aspectRatio;
 
   @override
+  State<CardWidgetIncomeorexpanse> createState() =>
+      _CardWidgetIncomeorexpanseState();
+}
+
+class _CardWidgetIncomeorexpanseState extends State<CardWidgetIncomeorexpanse> {
+  @override
   Widget build(BuildContext context) {
+    final cubit = context.watch<AddTransactionCubit>();
+
+    final amount = widget.amountType == "Income"
+        ? cubit.totalIncomeAmount
+        : cubit.totalExpenseAmount;
     final cardContent = Card(
       color: Colors.white,
       elevation: 4,
@@ -31,15 +44,15 @@ class CardWidgetIncomeorexpanse extends StatelessWidget {
                 children: [
                   CircleAvatar(
                     radius: 15,
-                    backgroundColor: amountType == "Income"
+                    backgroundColor: widget.amountType == "Income"
                         ? Colors.green.withOpacity(.2)
                         : Colors.red.withOpacity(0.2),
-                    child: amountType == "Income"
-                        ? Icon(
+                    child: widget.amountType == "Income"
+                        ? const Icon(
                             Icons.arrow_upward,
                             color: Colors.green,
                           )
-                        : Icon(
+                        : const Icon(
                             Icons.arrow_downward,
                             color: Colors.red,
                           ),
@@ -50,7 +63,7 @@ class CardWidgetIncomeorexpanse extends StatelessWidget {
             Column(
               children: [
                 Text(
-                  "Total $amountType",
+                  "Total ${widget.amountType}",
                   style: TextStyle(
                     fontSize: 12,
                     color: Colors.grey.withOpacity(.8),
@@ -58,7 +71,7 @@ class CardWidgetIncomeorexpanse extends StatelessWidget {
                 ),
                 const SizedBox(height: 10),
                 Text(
-                  amountType == "Income" ? "+\$$amount" : "-\$$amount",
+                  widget.amountType == "Income" ? "\$+$amount" : "\$-$amount",
                   style: const TextStyle(
                     fontSize: 24,
                     color: Colors.black,
@@ -72,9 +85,9 @@ class CardWidgetIncomeorexpanse extends StatelessWidget {
       ),
     );
 
-    return aspectRatio != null
+    return widget.aspectRatio != null
         ? AspectRatio(
-            aspectRatio: aspectRatio!,
+            aspectRatio: widget.aspectRatio!,
             child: cardContent,
           )
         : cardContent;

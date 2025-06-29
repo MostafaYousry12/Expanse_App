@@ -1,5 +1,5 @@
+import 'package:expanse_app/cubits/cubit/add_transaction_cubit.dart';
 import 'package:expanse_app/cubits/cubit/transaction_cubits/transaction_cubit.dart';
-import 'package:expanse_app/models/expanse_model.dart';
 import 'package:expanse_app/widgets/appbar_widget.dart';
 import 'package:expanse_app/widgets/card_widget.dart';
 import 'package:expanse_app/widgets/card_widget_incomeOrExpanse.dart';
@@ -18,12 +18,17 @@ class _DashboardviewBodyState extends State<DashboardviewBody> {
   @override
   void initState() {
     BlocProvider.of<TransactionCubit>(context).fetchCubitTransaction();
+    BlocProvider.of<AddTransactionCubit>(context).fetchTransaction();
+
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return const SingleChildScrollView(
+    final cubit = context.watch<AddTransactionCubit>();
+    final amount = cubit.totalBalance;
+
+    return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
@@ -34,7 +39,7 @@ class _DashboardviewBodyState extends State<DashboardviewBody> {
               height: 15,
             ),
             CardWidget(
-              amount: 2000,
+              amount: amount,
               amountType: "Balance",
               aspectRatio: 3,
             ),
