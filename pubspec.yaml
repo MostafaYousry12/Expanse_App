@@ -41,6 +41,7 @@ dependencies:
   bloc: ^9.0.0
   font_awesome_flutter: ^10.8.0
   google_fonts: ^6.2.1
+  dropdown_button2: ^2.3.9
 
 dev_dependencies:
   flutter_test:
