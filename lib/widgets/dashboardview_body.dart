@@ -1,51 +1,36 @@
+import 'package:expanse_app/cubits/cubit/transaction_cubits/transaction_cubit.dart';
 import 'package:expanse_app/models/expanse_model.dart';
 import 'package:expanse_app/widgets/appbar_widget.dart';
 import 'package:expanse_app/widgets/card_widget.dart';
 import 'package:expanse_app/widgets/card_widget_incomeOrExpanse.dart';
 import 'package:expanse_app/widgets/list_view_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DashboardviewBody extends StatelessWidget {
-  DashboardviewBody({super.key});
+class DashboardviewBody extends StatefulWidget {
+  const DashboardviewBody({super.key});
 
-  List<ExpanseModel> dummyData = [
-    ExpanseModel(
-        transactionType: "food",
-        amount: 1000,
-        type: "income",
-        doneTime: DateTime.now()),
-    ExpanseModel(
-        transactionType: "food",
-        amount: 1000,
-        type: "income",
-        doneTime: DateTime.now()),
-    ExpanseModel(
-        transactionType: "food",
-        amount: 1000,
-        type: "income",
-        doneTime: DateTime.now()),
-    ExpanseModel(
-        transactionType: "food",
-        amount: 1000,
-        type: "income",
-        doneTime: DateTime.now()),
-    ExpanseModel(
-        transactionType: "food",
-        amount: 1000,
-        type: "income",
-        doneTime: DateTime.now()),
-  ];
+  @override
+  State<DashboardviewBody> createState() => _DashboardviewBodyState();
+}
+
+class _DashboardviewBodyState extends State<DashboardviewBody> {
+  @override
+  void initState() {
+    BlocProvider.of<TransactionCubit>(context).fetchCubitTransaction();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
+    return const SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             AppBarWidget(),
-            const SizedBox(
+            SizedBox(
               height: 15,
             ),
             CardWidget(
@@ -53,10 +38,10 @@ class DashboardviewBody extends StatelessWidget {
               amountType: "Balance",
               aspectRatio: 3,
             ),
-            const SizedBox(
+            SizedBox(
               height: 5,
             ),
-            const Row(
+            Row(
               children: [
                 Expanded(
                   child: CardWidgetIncomeorexpanse(
@@ -74,8 +59,8 @@ class DashboardviewBody extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 20),
-            const Padding(
+            SizedBox(height: 20),
+            Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
               child: Text(
                 "Recent Transaction",
@@ -86,10 +71,9 @@ class DashboardviewBody extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: SizedBox(
-                  height: 300,
-                  child: ListViewWidget(expanses: dummyData, aspectRatio: 3)),
+              padding: EdgeInsets.all(8.0),
+              child:
+                  SizedBox(height: 300, child: ListViewWidget(aspectRatio: 3)),
             ),
           ],
         ),

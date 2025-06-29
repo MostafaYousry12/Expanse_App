@@ -4,23 +4,28 @@ class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
     super.key,
     required this.labelText,
-    this.controller,
     this.keyboardType,
-    this.validator,
+    this.onSaved,
   });
 
   final String labelText;
-  final TextEditingController? controller;
   final TextInputType? keyboardType;
-  final String? Function(String?)? validator;
+  final void Function(String?)? onSaved;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
+      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: TextFormField(
         keyboardType: keyboardType,
-        validator: validator,
+        onSaved: onSaved,
+        validator: (value) {
+          if (value?.isEmpty ?? true) {
+            return "Field is Required";
+          } else {
+            return null;
+          }
+        },
         style: const TextStyle(fontSize: 16),
         decoration: InputDecoration(
           labelText: labelText,

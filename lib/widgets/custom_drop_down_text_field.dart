@@ -2,8 +2,8 @@ import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 
 class CustomDropDownTextField extends StatefulWidget {
-  CustomDropDownTextField({super.key});
-
+  const CustomDropDownTextField({super.key, this.onSaved});
+  final void Function(String?)? onSaved;
   @override
   State<CustomDropDownTextField> createState() => _DropDownTextFieldState();
 }
@@ -18,6 +18,14 @@ class _DropDownTextFieldState extends State<CustomDropDownTextField> {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: DropdownButtonFormField2<String>(
+        onSaved: widget.onSaved,
+        validator: (value) {
+          if (value?.isEmpty ?? true) {
+            return "Field is required";
+          } else {
+            return null;
+          }
+        },
         value: selectedCategory,
         isExpanded: true,
         decoration: InputDecoration(

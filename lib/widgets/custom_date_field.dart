@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class CustomDateField extends StatefulWidget {
-  const CustomDateField({super.key});
+  const CustomDateField({super.key, this.onSaved});
+
+  final void Function(String?)? onSaved;
 
   @override
   State<CustomDateField> createState() => _DateFieldState();
@@ -30,6 +32,14 @@ class _DateFieldState extends State<CustomDateField> {
     return Padding(
       padding: const EdgeInsets.all(16),
       child: TextFormField(
+        onSaved: widget.onSaved,
+        validator: (value) {
+          if (value?.isEmpty ?? true) {
+            return "Field is required";
+          } else {
+            return null;
+          }
+        },
         controller: _dateController,
         readOnly: true,
         onTap: () => _selectDate(context),

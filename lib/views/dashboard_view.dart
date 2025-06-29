@@ -1,13 +1,17 @@
-import 'package:expanse_app/constants.dart';
+import 'package:expanse_app/cubits/cubit/add_transaction_cubit.dart';
 import 'package:expanse_app/views/addTransaction_view.dart';
-import 'package:expanse_app/widgets/appbar_widget.dart';
 import 'package:expanse_app/widgets/dashboardview_body.dart';
-import 'package:expanse_app/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
-class DashboardView extends StatelessWidget {
+class DashboardView extends StatefulWidget {
   const DashboardView({super.key});
 
+  @override
+  State<DashboardView> createState() => _DashboardViewState();
+}
+
+class _DashboardViewState extends State<DashboardView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -18,7 +22,10 @@ class DashboardView extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const AddtransactionView(),
+              builder: (context) => BlocProvider(
+                create: (context) => AddTransactionCubit(),
+                child: const AddtransactionView(),
+              ),
             ),
           );
         },

@@ -1,27 +1,52 @@
+import 'package:expanse_app/constants.dart';
+import 'package:expanse_app/cubits/cubit/add_transaction_cubit.dart';
+import 'package:expanse_app/cubits/cubit/transaction_cubits/transaction_cubit.dart';
 import 'package:expanse_app/models/expanse_model.dart';
 import 'package:expanse_app/widgets/List_view_card.dart';
-import 'package:expanse_app/widgets/card_widget.dart';
 import 'package:flutter/material.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive/hive.dart';
+
 class ListViewWidget extends StatelessWidget {
-  const ListViewWidget(
-      {super.key, required this.expanses, required this.aspectRatio});
+  const ListViewWidget({super.key, required this.aspectRatio});
 
   final double aspectRatio;
-  final List<ExpanseModel> expanses;
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      itemCount: expanses.length,
-      itemBuilder: (context, index) {
-        final item = expanses[index];
-        return ListViewCard(
-          amountType: item.type,
-          amount: item.amount,
-        );
+    return BlocBuilder<TransactionCubit, TransactionState>(
+      builder: (context, state) {
+        if (state is TransactionLoaded) {
+          List<ExpanseModel> transactions =
+              BlocProvider.of<TransactionCubit>(context).transactions!;
+          if (transactions.isEmpty) {
+            return const Center(
+                child: Text(
+              "No transactions yet",
+              style: TextStyle(
+                fontSize: 22,
+                color: Colors.black,
+              ),
+            ));
+          }
+          return ListView.builder(
+            scrollDirection: Axis.vertical,
+            shrinkWrap: true,
+            itemCount: transactions.length,
+            itemBuilder: (context, index) {
+              final item = transactions[index];
+              return ListViewCard(
+                amountType: item.type,
+                amount: item.amount,
+              );
+            },
+          );
+        } else if (state is TransactionFailure) {
+          return Center(child: Text('Error: ${state.errMsg}'));
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
       },
     );
   }
