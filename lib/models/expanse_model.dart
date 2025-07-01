@@ -3,15 +3,15 @@ import 'package:hive_flutter/hive_flutter.dart';
 part 'expanse_model.g.dart';
 
 @HiveType(typeId: 0)
-class ExpanseModel {
+class ExpanseModel extends HiveObject {
   @HiveField(0)
-  final int amount;
+  int amount;
   @HiveField(1)
-  final String type;
+  String type;
   @HiveField(2)
-  final DateTime doneTime;
+  DateTime doneTime;
   @HiveField(3)
-  final String transactionType;
+  String transactionType;
 
   ExpanseModel(
       {required this.transactionType,

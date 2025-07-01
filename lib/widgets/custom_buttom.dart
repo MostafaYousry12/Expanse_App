@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 
 class CustomButtom extends StatelessWidget {
-  const CustomButtom({super.key, this.onPressed, this.isLoading = false});
+  const CustomButtom(
+      {super.key,
+      this.onPressed,
+      this.isLoading = false,
+      required this.buttomName});
   final void Function()? onPressed;
   final bool isLoading;
+  final String buttomName;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -25,7 +30,7 @@ class CustomButtom extends StatelessWidget {
             )
           : TextButton(
               onPressed: onPressed,
-              child: const Text("Add Transaction"),
+              child: Text(buttomName),
             ),
     );
   }

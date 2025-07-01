@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class CustomDateField extends StatefulWidget {
-  const CustomDateField({super.key, this.onSaved});
+  final DateTime? date;
+  const CustomDateField({super.key, this.onSaved, @required this.date});
 
   final void Function(String?)? onSaved;
 
@@ -44,7 +46,9 @@ class _DateFieldState extends State<CustomDateField> {
         readOnly: true,
         onTap: () => _selectDate(context),
         decoration: InputDecoration(
-          labelText: "Date",
+          labelText: widget.date != null
+              ? DateFormat('d/M/yyyy').format(widget.date!)
+              : "Date",
           floatingLabelBehavior: FloatingLabelBehavior.auto,
           filled: true,
           fillColor: Colors.grey.withOpacity(0.15),

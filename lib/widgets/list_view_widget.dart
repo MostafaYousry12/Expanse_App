@@ -1,6 +1,8 @@
 import 'package:expanse_app/cubits/cubit/transaction_cubits/transaction_cubit.dart';
 import 'package:expanse_app/models/expanse_model.dart';
+import 'package:expanse_app/views/edit_transaction_view.dart';
 import 'package:expanse_app/widgets/List_view_card.dart';
+import 'package:expanse_app/widgets/edit_transaction_body.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -34,6 +36,7 @@ class ListViewWidget extends StatelessWidget {
             itemBuilder: (context, index) {
               final item = transactions[index];
               return ListViewCard(
+                expanse: item,
                 amountType: item.type,
                 amount: item.amount,
                 date: item.doneTime,

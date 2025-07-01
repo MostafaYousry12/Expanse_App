@@ -1,9 +1,14 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:expanse_app/models/expanse_model.dart';
 import 'package:flutter/material.dart';
 
 class CustomDropDownTextField extends StatefulWidget {
-  const CustomDropDownTextField({super.key, this.onSaved});
+  final String? transactionType;
+  const CustomDropDownTextField(
+      {super.key, this.onSaved, this.transactionType});
+
   final void Function(String?)? onSaved;
+
   @override
   State<CustomDropDownTextField> createState() => _DropDownTextFieldState();
 }
@@ -12,6 +17,12 @@ class _DropDownTextFieldState extends State<CustomDropDownTextField> {
   String? selectedCategory;
 
   List<String> categories = ["Income", "Expanse"];
+
+  @override
+  void initState() {
+    super.initState();
+    selectedCategory = widget.transactionType;
+  }
 
   @override
   Widget build(BuildContext context) {
