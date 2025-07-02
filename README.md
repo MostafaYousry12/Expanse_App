@@ -1,16 +1,50 @@
-# expanse_app
+💸 Expense Tracker App
+A simple and efficient Flutter app that helps users track their income and expenses. Built with a clean UI and powerful state management using Cubit (BLoC) and local storage via Hive.
 
-A new Flutter project.
+🚀 Features
+Add new income or expense transactions 💰
 
-## Getting Started
+Edit existing transactions ✏️
 
-This project is a starting point for a Flutter application.
+Delete transactions with a single tap 🗑️
 
-A few resources to get you started if this is your first Flutter project:
+Clean & responsive UI with custom widgets
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+Local data storage using Hive
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+State management using Cubit
+
+📸 Demo
+https://drive.google.com/file/d/1b2UqrZXgvymy8QNF6g88mlXbZHtY5DQA/view?usp=drive_link
+
+🛠️ Tech Stack
+Flutter
+
+Hive for local storage
+
+Cubit (part of the BLoC package) for state management
+
+Intl for date formatting
+
+Custom Widgets for UI consistency
+
+🧪 How to Run
+bash
+Copy
+Edit
+git clone https://github.com/yourusername/expense_tracker.git
+cd expense_tracker
+flutter pub get
+flutter packages pub run build_runner build
+flutter run
+✅ Future Improvements
+Add monthly analytics / charts 📊
+
+Sync with cloud (Firebase) ☁️
+
+Authentication for multiple users 🔐
+
+🙋‍♂️ Author
+Made with ❤️ by [Your Name]
+🔗 [LinkedIn](https://www.linkedin.com/in/mostafa-yousry-451993221/)
+🔗 [GitHub](https://github.com/MostafaYousry12)
