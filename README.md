@@ -45,6 +45,6 @@ Sync with cloud (Firebase) ☁️
 Authentication for multiple users 🔐
 
 🙋‍♂️ Author
-Made with ❤️ by [Your Name]
+Made with ❤️ by [Eng. Mostafa Yousry]
 🔗 [LinkedIn](https://www.linkedin.com/in/mostafa-yousry-451993221/)
 🔗 [GitHub](https://github.com/MostafaYousry12)
