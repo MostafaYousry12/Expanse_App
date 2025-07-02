@@ -1,4 +1,5 @@
 💸 Expense Tracker App
+
 A simple and efficient Flutter app that helps users track their income and expenses. Built with a clean UI and powerful state management using Cubit (BLoC) and local storage via Hive.
 
 🚀 Features
