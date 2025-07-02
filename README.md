@@ -32,15 +32,23 @@ Custom Widgets for UI consistency
 🧪 How to Run
 
 bash
+
 Copy
+
 Edit
+
 git clone https://github.com/MostafaYousry12/Expanse_App.git
+
 cd expense_tracker
+
 flutter pub get
+
 flutter packages pub run build_runner build
+
 flutter run
 
 ✅ Future Improvements
+
 Add monthly analytics / charts 📊
 
 Sync with cloud (Firebase) ☁️
@@ -50,4 +58,5 @@ Authentication for multiple users 🔐
 🙋‍♂️ Author
 Made with ❤️ by [Eng. Mostafa Yousry]
 🔗 [LinkedIn](https://www.linkedin.com/in/mostafa-yousry-451993221/)
+
 🔗 [GitHub](https://github.com/MostafaYousry12)
